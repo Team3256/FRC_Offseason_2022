@@ -151,14 +151,14 @@ gradle-app.setting
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 
-# # VS Code Specific Java Settings
+# # VS Code and IntelliJ Specific Java Settings
 # DO NOT REMOVE .classpath and .project
 .classpath
 .project
 .settings/
+.idea/
 bin/
 
 # Simulation GUI and other tools window save file
 *-window.json
 
-.idea/*
