@@ -1,7 +1,7 @@
 import static org.junit.Assert.*;
 
 import edu.wpi.first.hal.HAL;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
+//import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.simulation.DoubleSolenoidSim;
 import edu.wpi.first.wpilibj.simulation.PWMSim;
 import frc.robot.Constants.IntakeConstants;
@@ -13,7 +13,7 @@ public class SetFlywheelVelocityTest {
     PWMSim simMotor;
     DoubleSolenoidSim simPiston;
 
-    @Before // this method will run before each test
+    @Before
     public void setup() {
         assert HAL.initialize(500, 0); // initialize the HAL, crash if failed
     }
