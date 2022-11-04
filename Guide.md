@@ -39,7 +39,7 @@ public class CommandName extends CommandBase {
 }
 ```
 
-###Checking Assignments in Terminal
+### Checking Assignments in Terminal
 Run `./gradlew test` in Terminal
 
 
