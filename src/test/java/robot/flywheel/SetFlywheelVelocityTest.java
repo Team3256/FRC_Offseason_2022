@@ -3,6 +3,8 @@ package robot.flywheel;
 import static org.junit.Assert.*;
 import edu.wpi.first.hal.HAL;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.flywheel.FlywheelSubsystem;
 import frc.robot.flywheel.commands.SetFlywheelVelocity;
 import frc.robot.flywheel.commands.StopFlywheel;
@@ -20,24 +22,12 @@ public class SetFlywheelVelocityTest {
     }
 
     @Test
-    public void setVelocityTo0Percent() {
-        SetFlywheelVelocity setVelocityCommand50 = new SetFlywheelVelocity(flywheelSubsystem, 0.0);
-        runCommandForSeconds(0.5, setVelocityCommand50);
-        assertEquals("Set Speed to 0%", flywheelSubsystem.getPercentSpeed(), 0.0, DELTA);
-    }
+    public void checkFollowing() {
+        SetFlywheelVelocity setVelocityCommand = new SetFlywheelVelocity(flywheelSubsystem, 0.12);
 
-    @Test
-    public void setVelocityTo50Percent() {
-        SetFlywheelVelocity setVelocityCommand50 = new SetFlywheelVelocity(flywheelSubsystem, 0.5);
-        runCommandForSeconds(0.5, setVelocityCommand50);
-        assertEquals("Set Speed to 50%", flywheelSubsystem.getPercentSpeed(), 0.5, DELTA);
-    }
-
-    @Test
-    public void setVelocityTo100Percent() {
-        SetFlywheelVelocity setVelocityCommand100 = new SetFlywheelVelocity(flywheelSubsystem, 1.0);
-        runCommandForSeconds(0.5, setVelocityCommand100);
-        assertEquals("Set Speed to 100", flywheelSubsystem.getPercentSpeed(), 1.0, DELTA);
+        //run and check both speeds
+        runCommandForSeconds(0.5, setVelocityCommand);
+        assertEquals("Is Right Following Left?", flywheelSubsystem.getPercentSpeed(), flywheelSubsystem.getFollowingPercentSpeed(), DELTA);
     }
 
     /*

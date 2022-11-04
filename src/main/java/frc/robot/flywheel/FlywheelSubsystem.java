@@ -1,5 +1,6 @@
 package frc.robot.flywheel;
 
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.FlywheelConstants;
 
@@ -13,6 +14,7 @@ public class FlywheelSubsystem extends SubsystemBase {
      * 1 Follower TalonFX (Right)
      * Total: 2 TalonFX motors
      */
+
     public FlywheelSubsystem() {
     }
 
@@ -29,9 +31,18 @@ public class FlywheelSubsystem extends SubsystemBase {
     }
 
     /*
-     * Get the percent speed of the motor
+     * Get the percent speed of the master motor
      */
     public double getPercentSpeed() {
         return 0.0;
     }
+
+    /*
+     * Get the percent speed of the following motor
+     */
+    public double getFollowingPercentSpeed() {
+        return 0.0;
+    }
+
+
 }
