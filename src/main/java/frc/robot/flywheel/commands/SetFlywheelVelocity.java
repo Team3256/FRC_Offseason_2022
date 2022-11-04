@@ -9,7 +9,7 @@ import frc.robot.flywheel.FlywheelSubsystem;
 public class SetFlywheelVelocity extends CommandBase {
     public SetFlywheelVelocity(FlywheelSubsystem flywheelSubsystem, double percentSpeed) {
         // Use addRequirements() here to declare subsystem dependencies.
-        addRequirements();
+        addRequirements(flywheelSubsystem);
     }
 
     // Called when the command is initially scheduled.

@@ -20,18 +20,30 @@ public class SetFlywheelVelocityTest {
     }
 
     @Test
-    public void checkFollowing() {
-        SetFlywheelVelocity setVelocityCommand = new SetFlywheelVelocity(flywheelSubsystem, 0.12);
+    public void setVelocity0(){
+        StopFlywheel stopFlywheelCommand = new StopFlywheel(flywheelSubsystem);
+        runCommandForSeconds(0.5, stopFlywheelCommand);
+        assertEquals("Stops flywheel", flywheelSubsystem.getPercentSpeed(), 0.0, DELTA);
+    }
 
-        //run and check both speeds
-        runCommandForSeconds(0.5, setVelocityCommand);
-        assertEquals("Is Right Following Left?", flywheelSubsystem.getPercentSpeed(), flywheelSubsystem.getFollowingPercentSpeed(), DELTA);
+    @Test
+    public void setVelocity100(){
+        SetFlywheelVelocity setVelocityCommand100 = new SetFlywheelVelocity(flywheelSubsystem, 1.0);
+        runCommandForSeconds(0.5, setVelocityCommand100);
+        assertEquals("Set Speed to 100", flywheelSubsystem.getPercentSpeed(), 1.0, DELTA);
+    }
+
+    @Test
+    public void setVelocity50(){
+        SetFlywheelVelocity setVelocityCommand50 = new SetFlywheelVelocity(flywheelSubsystem, 0.5);
+        runCommandForSeconds(0.5, setVelocityCommand50);
+        assertEquals("Set Speed to 50%", flywheelSubsystem.getPercentSpeed(), 0.5, DELTA);
     }
 
     /*
      * Runs the flywheel at 100%, then stops it, then at 50%
     */
-    @Test()
+    @Test
     public void customVelocityRoutine() {
         SetFlywheelVelocity setVelocityCommand100 = new SetFlywheelVelocity(flywheelSubsystem, 1.0);
         runCommandForSeconds(0.5, setVelocityCommand100);
@@ -44,6 +56,16 @@ public class SetFlywheelVelocityTest {
         SetFlywheelVelocity setVelocityCommand50 = new SetFlywheelVelocity(flywheelSubsystem, 0.5);
         runCommandForSeconds(0.5, setVelocityCommand50);
         assertEquals("Set Speed to 50%", flywheelSubsystem.getPercentSpeed(), 0.5, DELTA);
+    }
+
+
+    @Test
+    public void checkFollowing() {
+        SetFlywheelVelocity setVelocityCommand = new SetFlywheelVelocity(flywheelSubsystem, 0.12);
+
+        //run and check both speeds
+        runCommandForSeconds(0.5, setVelocityCommand);
+        assertEquals("Is Right Following Left?", flywheelSubsystem.getPercentSpeed(), flywheelSubsystem.getFollowingPercentSpeed(), DELTA);
     }
 
      private static void runCommandForSeconds(double seconds, Command... commands) {
