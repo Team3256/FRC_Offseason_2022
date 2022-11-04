@@ -15,7 +15,7 @@ Contains helpful information for software and assignments
 
 Example:
 ``` 
-TalonFX followingMotor = createTalonFX(id, config, canBus);
+TalonFX followingMotor = new TalonFX(id);
 followingMotor.follow(masterMotor);
 ```
 
