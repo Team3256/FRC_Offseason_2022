@@ -67,7 +67,29 @@ dependencies {
     simulationRelease wpi.sim.enableRelease()
 
     testImplementation 'junit:junit:4.12'
+    // Use JUnit 5 in the future
+    // testImplementation 'org.junit.jupiter:junit-jupiter-api:5.1.1'
+    // testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.1.1'
 }
+
+test {
+   useJUnit()
+    // Enable JUnit 5 (Gradle 4.6+). Maybe in the future?
+    // useJUnitPlatform()
+    //
+    // // Always run tests, even when nothing changed.
+    // dependsOn 'cleanTest'
+    //
+    // // Show test results.
+    // testLogging {
+    //     events "passed", "skipped", "failed"
+    // }
+}
+
+test {
+   useJUnit()
+}
+
 
 // Simulation configuration (e.g. environment variables).
 wpi.sim.addGui().defaultEnabled = true
@@ -86,7 +108,6 @@ jar {
 deployArtifact.jarTask = jar
 wpi.java.configureExecutableTasks(jar)
 wpi.java.configureTestTasks(test)
-
 //spotless {
 //    java {
 //        target fileTree('.') {
