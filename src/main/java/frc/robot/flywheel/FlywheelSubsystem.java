@@ -1,7 +1,11 @@
 package frc.robot.flywheel;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.FlywheelConstants;
+
+import javax.naming.ldap.Control;
 
 /*
  * A class to control the hardware associated with the flywheeel subsystem
@@ -14,19 +18,28 @@ public class FlywheelSubsystem extends SubsystemBase {
      * Total: 2 TalonFX motors
      */
 
+    private final TalonFX masterFlywheel;
+    private final TalonFX followerFlywheel;
+
     public FlywheelSubsystem() {
+        masterFlywheel = new TalonFX(FlywheelConstants.LEFT_CAN_ID);
+        followerFlywheel = new TalonFX(FlywheelConstants.RIGHT_CAN_ID);
+
+        followerFlywheel.follow(masterFlywheel);
     }
 
     /*
      * Stop the flywheel from moving
      */
     public void stopFlywheel() {
+        masterFlywheel.set(ControlMode.PercentOutput, 0);
     }
 
     /*
      * Set the speed of the motor using the Percent ControlMode
      */
     public void setPercentSpeed(double percent) {
+        masterFlywheel.set(ControlMode.PercentOutput, percent);
     }
 
     /*

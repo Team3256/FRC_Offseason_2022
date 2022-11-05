@@ -8,14 +8,18 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
  */
 public class StopFlywheel extends CommandBase {
 
+    FlywheelSubsystem flywheelSubsystem;
+
     public StopFlywheel(FlywheelSubsystem flywheelSubsystem) {
         // Use addRequirements() here to declare subsystem dependencies.
+        this.flywheelSubsystem = flywheelSubsystem;
         addRequirements();
     }
 
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        flywheelSubsystem.stopFlywheel();
     }
 
     // Called once per loop run.
