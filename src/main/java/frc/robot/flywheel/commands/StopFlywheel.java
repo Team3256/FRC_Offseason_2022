@@ -11,9 +11,9 @@ public class StopFlywheel extends CommandBase {
     public FlywheelSubsystem flywheelSubsystem;
 
     public StopFlywheel(FlywheelSubsystem flywheelSubsystem) {
+        this.flywheelSubsystem = flywheelSubsystem;
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(flywheelSubsystem);
-        this.flywheelSubsystem = flywheelSubsystem;
     }
 
     // Called when the command is initially scheduled.
@@ -25,11 +25,15 @@ public class StopFlywheel extends CommandBase {
     // Called once per loop run.
     @Override
     public void execute() {
-        this.flywheelSubsystem.stopFlywheel();
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+    }
+
+    @Override
+    public boolean isFinished(){
+        return false;
     }
 }

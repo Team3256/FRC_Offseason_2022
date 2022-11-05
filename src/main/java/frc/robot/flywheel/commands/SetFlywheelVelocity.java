@@ -12,9 +12,9 @@ public class SetFlywheelVelocity extends CommandBase {
     public FlywheelSubsystem flywheelSubsystem;
     public SetFlywheelVelocity(FlywheelSubsystem flywheelSubsystem, double percentSpeed) {
         // Use addRequirements() here to declare subsystem dependencies.
-        addRequirements(flywheelSubsystem);
         this.flywheelSubsystem = flywheelSubsystem;
         this.percentSpeed = percentSpeed;
+        addRequirements(flywheelSubsystem);
     }
 
     // Called when the command is initially scheduled.
@@ -26,7 +26,7 @@ public class SetFlywheelVelocity extends CommandBase {
     // Called once per loop run.
     @Override
     public void execute() {
-        this.flywheelSubsystem.setPercentSpeed(this.percentSpeed);
+        // pass
     }
 
     // Called once the command ends or is interrupted.
