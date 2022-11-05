@@ -16,7 +16,7 @@ public class SetFlywheelVelocity extends CommandBase {
         this.flywheelSubsystem = flywheelSubsystem;
         this.percentSpeed = percentSpeed;
 
-        addRequirements();
+        addRequirements(flywheelSubsystem);
     }
 
     // Called when the command is initially scheduled.

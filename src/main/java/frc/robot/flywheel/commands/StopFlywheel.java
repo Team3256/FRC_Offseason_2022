@@ -13,7 +13,7 @@ public class StopFlywheel extends CommandBase {
     public StopFlywheel(FlywheelSubsystem flywheelSubsystem) {
         // Use addRequirements() here to declare subsystem dependencies.
         this.flywheelSubsystem = flywheelSubsystem;
-        addRequirements();
+        addRequirements(flywheelSubsystem);
     }
 
     // Called when the command is initially scheduled.
