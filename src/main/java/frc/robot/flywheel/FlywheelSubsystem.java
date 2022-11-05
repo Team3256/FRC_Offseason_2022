@@ -46,14 +46,14 @@ public class FlywheelSubsystem extends SubsystemBase {
      * Get the percent speed of the master motor
      */
     public double getPercentSpeed() {
-        return 0.0;
+        return masterFlywheel.getMotorOutputPercent();
     }
 
     /*
      * Get the percent speed of the following motor
      */
     public double getFollowingPercentSpeed() {
-        return 0.0;
+        return followerFlywheel.getMotorOutputPercent();
     }
 
 
