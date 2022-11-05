@@ -7,14 +7,22 @@ import frc.robot.flywheel.FlywheelSubsystem;
  * Set the percent speed of the flywheel motors
  */
 public class SetFlywheelVelocity extends CommandBase {
+
+    FlywheelSubsystem flywheelSubsystem;
+    double percentSpeed;
+
     public SetFlywheelVelocity(FlywheelSubsystem flywheelSubsystem, double percentSpeed) {
         // Use addRequirements() here to declare subsystem dependencies.
-        addRequirements();
+        this.flywheelSubsystem = flywheelSubsystem;
+        this.percentSpeed = percentSpeed;
+
+        addRequirements(flywheelSubsystem);
     }
 
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        flywheelSubsystem.setPercentSpeed(percentSpeed);
     }
 
     // Called once per loop run.
