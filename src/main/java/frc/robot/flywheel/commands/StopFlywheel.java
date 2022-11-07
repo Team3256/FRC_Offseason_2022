@@ -7,15 +7,17 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
  * A command to stop the flywheel motors
  */
 public class StopFlywheel extends CommandBase {
-
+    private FlywheelSubsystem flywheelSubsystem;
     public StopFlywheel(FlywheelSubsystem flywheelSubsystem) {
         // Use addRequirements() here to declare subsystem dependencies.
-        addRequirements();
+        addRequirements(flywheelSubsystem);
+        this.flywheelSubsystem=flywheelSubsystem;
     }
 
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        flywheelSubsystem.stopFlywheel();
     }
 
     // Called once per loop run.
