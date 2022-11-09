@@ -7,15 +7,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.Subsystem;
-import frc.robot.flywheel.commands.*;
-import frc.robot.flywheel.FlywheelSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
-
-import java.util.Set;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -24,9 +18,6 @@ import java.util.Set;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-
-    private FlywheelSubsystem flywheel = new FlywheelSubsystem();
-
     private final XboxController driverController = new XboxController(0);
     private final XboxController operatorController = new XboxController(1);
 
@@ -34,7 +25,6 @@ public class RobotContainer {
     public RobotContainer() {
     // Configure the button bindings
         configureButtonBindings();
-        configureFlywheel();
     }
 
     /**
@@ -51,10 +41,6 @@ public class RobotContainer {
     *
     * @return the command to run in autonomous
     */
-
-    private void configureFlywheel() {
-        driverLeftBumper.whileHeld(new SetFlywheelVelocity( flywheel,0.1));
-    }
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
         return new InstantCommand();
