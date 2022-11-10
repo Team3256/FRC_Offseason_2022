@@ -21,9 +21,10 @@ public final class Constants {
         public static final double FLYWHEEL_INERTIA =
               0.5 * Units.lbsToKilograms(1.5) * Math.pow(Units.inchesToMeters(4), 2); // 1/2*M*R^2
         public static final double FLYWHEEL_GEARING = 1.0;
+        public static final double KFF = 4 / 1200;
     }
 
     public static class SimConstants {
-        public static final double VOLTAGE_NOISE_RANGE = 0.1;
+        public static final double VOLTAGE_NOISE_RANGE = 0.0;
     }
 }

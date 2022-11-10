@@ -11,7 +11,7 @@ public class SetFlywheelFromPID extends PIDCommand {
     DoubleSupplier velocity;
     public SetFlywheelFromPID(FlywheelSubsystem flywheelSubsystem, DoubleSupplier velocity) {
         super(
-            new PIDController(0.01, 0, 0),
+            new PIDController(0.025, 0.005, 0),
             flywheelSubsystem::getAngularVelocityRPM,
             velocity,
             voltage -> flywheelSubsystem.setInputVoltage(voltage),
@@ -23,7 +23,7 @@ public class SetFlywheelFromPID extends PIDCommand {
 
     public SetFlywheelFromPID(FlywheelSubsystem flywheelSubsystem, double velocity) {
         super(
-            new PIDController(0.01, 0, 0),
+            new PIDController(0.025, 0.005, 0),
             flywheelSubsystem::getAngularVelocityRPM,
             velocity,
             voltage -> flywheelSubsystem.setInputVoltage(voltage),

@@ -3,6 +3,7 @@ package frc.robot.flywheel;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.Timer;
@@ -67,28 +68,17 @@ public class FlywheelSubsystem extends SubsystemBase {
     }
 
     public void setInputVoltage(double voltage) {
-        if (Math.abs(voltage) > 12) {
-            System.out.println("Setting voltage over 12 (" + voltage + "), you need to decrease kP");
-        }
-
         if (RobotBase.isSimulation()) {
             double noise = Math.random() * SimConstants.VOLTAGE_NOISE_RANGE - SimConstants.VOLTAGE_NOISE_RANGE / 2; // From -0.5*noise to 0.5*noise
-            periodicIO.voltage = noise + voltage;
+            periodicIO.voltage = MathUtil.clamp(noise + voltage + (2.20), 0, 12);
         } else {
-            periodicIO.voltage = voltage;
+            periodicIO.voltage = MathUtil.clamp(voltage + (2.20), 0, 12);
         }
+        flywheelSim.setInputVoltage(periodicIO.voltage);
     }
 
     public double getAngularVelocityRPM() {
         return periodicIO.angularVelocity;
-    }
-
-    public double getPercentSpeed() {
-        return masterLeftShooterMotor.getMotorOutputPercent();
-    }
-
-    public double getFollowingPercentSpeed() {
-        return followerRightShooterMotor.getMotorOutputPercent();
     }
 
     @Override
@@ -101,7 +91,6 @@ public class FlywheelSubsystem extends SubsystemBase {
     @Override
     public void simulationPeriodic() {
         double currentTime = Timer.getFPGATimestamp();
-        flywheelSim.setInput(periodicIO.voltage);
         flywheelSim.update(periodicIO.getDt(currentTime));
         
         periodicIO.lastUpdateTime = currentTime;
