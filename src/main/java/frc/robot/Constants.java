@@ -22,4 +22,8 @@ public final class Constants {
               0.5 * Units.lbsToKilograms(1.5) * Math.pow(Units.inchesToMeters(4), 2); // 1/2*M*R^2
         public static final double FLYWHEEL_GEARING = 1.0;
     }
+
+    public static class SimConstants {
+        public static final double VOLTAGE_NOISE_RANGE = 0.1;
+    }
 }
