@@ -19,9 +19,13 @@ public final class Constants {
         public static final int LEFT_CAN_ID = 10;
         public static final int RIGHT_CAN_ID = 11;
         public static final double FLYWHEEL_INERTIA =
-              0.5 * Units.lbsToKilograms(1.5) * Math.pow(Units.inchesToMeters(4), 2); // 1/2*M*R^2
+              0.5 * Units.lbsToKilograms(3) * Math.pow(Units.inchesToMeters(6), 2); // 1/2*M*R^2
         public static final double FLYWHEEL_GEARING = 1.0;
-        public static final double KFF = 4 / 1200;
+
+        public static final double KP = 0.0;
+        public static final double KI = 0.0;
+        public static final double KD = 0.0;
+        public static final double KFF = 2.2 / 1200;
     }
 
     public static class SimConstants {

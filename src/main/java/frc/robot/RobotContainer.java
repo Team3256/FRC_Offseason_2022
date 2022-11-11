@@ -9,10 +9,7 @@ import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.Button;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.flywheel.FlywheelSubsystem;
 import frc.robot.flywheel.commands.SetFlywheelFromPID;
 
@@ -23,8 +20,6 @@ import frc.robot.flywheel.commands.SetFlywheelFromPID;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-    private final XboxController driverController = new XboxController(0);
-    private final XboxController operatorController = new XboxController(1);
     private FlywheelSubsystem flywheelSubsystem;
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -54,7 +49,7 @@ public class RobotContainer {
     */
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
-        DoubleSupplier velocitySetpoint = () -> Math.sin(Timer.getFPGATimestamp()) * 1200;
+        DoubleSupplier velocitySetpoint = () -> Math.sin(Timer.getFPGATimestamp()) * 200 + 1200;
         return new SetFlywheelFromPID(flywheelSubsystem, velocitySetpoint);
     }
 }
