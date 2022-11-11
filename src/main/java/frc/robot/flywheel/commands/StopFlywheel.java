@@ -7,8 +7,8 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
  * A command to stop the flywheel motors
  */
 public class StopFlywheel extends CommandBase {
-    public double percentSpeed;
-    public FlywheelSubsystem flywheelSubsystem;
+    private double percentSpeed;
+    private FlywheelSubsystem flywheelSubsystem;
 
     public StopFlywheel(FlywheelSubsystem flywheelSubsystem) {
         this.flywheelSubsystem = flywheelSubsystem;

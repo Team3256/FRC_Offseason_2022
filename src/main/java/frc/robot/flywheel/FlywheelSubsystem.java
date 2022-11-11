@@ -18,8 +18,8 @@ public class FlywheelSubsystem extends SubsystemBase {
      * Total: 2 TalonFX motors
      */
 
-    public TalonFX masterMotor;
-    public TalonFX followerMotor;
+    private TalonFX masterMotor;
+    private TalonFX followerMotor;
 
     public FlywheelSubsystem() {
         masterMotor = new TalonFX(FlywheelConstants.LEFT_CAN_ID);
@@ -33,7 +33,6 @@ public class FlywheelSubsystem extends SubsystemBase {
      */
     public void stopFlywheel() {
         this.masterMotor.neutralOutput();
-        this.followerMotor.neutralOutput();
     }
 
     /*
