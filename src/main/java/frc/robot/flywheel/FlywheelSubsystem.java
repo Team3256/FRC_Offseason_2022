@@ -18,38 +18,40 @@ public class FlywheelSubsystem extends SubsystemBase {
      * 1 Follower TalonFX (Right)
      * Total: 2 TalonFX motors
      */
-    TalonFX left = new TalonFX(FlywheelConstants.LEFT_CAN_ID);
-    TalonFX right = new TalonFX(FlywheelConstants.RIGHT_CAN_ID);
+    private TalonFX leftMasterMotor;
+    private TalonFX rightMotor;
 
     public FlywheelSubsystem() {
-        right.follow(left);
+        leftMasterMotor  = new TalonFX(FlywheelConstants.LEFT_CAN_ID);
+        rightMotor = new TalonFX(FlywheelConstants.RIGHT_CAN_ID);
+        rightMotor.follow(leftMasterMotor);
     }
 
     /*
      * Stop the flywheel from moving
      */
     public void stopFlywheel() {
-        left.set(ControlMode.PercentOutput,0);
+        leftMasterMotor.neutralOutput();
     }
 
     /*
      * Set the speed of the motor using the Percent ControlMode
      */
     public void setPercentSpeed(double percent) {
-        left.set(ControlMode.PercentOutput,percent);
+        leftMasterMotor.set(ControlMode.PercentOutput,percent);
     }
 
     /*
      * Get the percent speed of the master motor
      */
     public double getPercentSpeed() {
-        return left.getMotorOutputPercent();
+        return leftMasterMotor.getMotorOutputPercent();
     }
 
     /*
      * Get the percent speed of the following motor
      */
     public double getFollowingPercentSpeed() {
-        return right.getMotorOutputPercent();
+        return rightMotor.getMotorOutputPercent();
     }
 }
