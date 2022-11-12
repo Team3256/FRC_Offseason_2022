@@ -20,6 +20,7 @@ public class FlywheelSubsystem extends SubsystemBase {
      */
     private TalonFX mainMotor;
     private TalonFX followMotor;
+
     public FlywheelSubsystem() {
         mainMotor = new TalonFX(FlywheelConstants.LEFT_CAN_ID);
         followMotor = new TalonFX(FlywheelConstants.RIGHT_CAN_ID);
@@ -37,7 +38,7 @@ public class FlywheelSubsystem extends SubsystemBase {
      * Set the speed of the motor using the Percent ControlMode
      */
     public void setPercentSpeed(double percent) {
-        mainMotor.set(TalonFXControlMode.Velocity, percent);
+        mainMotor.set(TalonFXControlMode.PercentOutput, percent);
     }
 
     /*
