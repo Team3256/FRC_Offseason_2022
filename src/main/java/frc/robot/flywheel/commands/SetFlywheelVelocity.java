@@ -10,6 +10,8 @@ public class SetFlywheelVelocity extends CommandBase {
     public SetFlywheelVelocity(FlywheelSubsystem flywheelSubsystem, double percentSpeed) {
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements();
+        flywheelSubsystem.setPercentSpeed(percentSpeed);
+        //flywheelSubsystem.stopFlywheel();
     }
 
     // Called when the command is initially scheduled.
