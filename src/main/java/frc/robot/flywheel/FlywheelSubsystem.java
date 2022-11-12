@@ -15,8 +15,8 @@ public class FlywheelSubsystem extends SubsystemBase {
      * 1 Follower TalonFX (Right)
      * Total: 2 TalonFX motors
      */
-    TalonFX leftMasterMotor;
-    TalonFX rightFollowerMotor;
+    private TalonFX leftMasterMotor;
+    private TalonFX rightFollowerMotor;
     public FlywheelSubsystem() {
         leftMasterMotor = new TalonFX(FlywheelConstants.LEFT_CAN_ID);
         rightFollowerMotor = new TalonFX(FlywheelConstants.RIGHT_CAN_ID);
