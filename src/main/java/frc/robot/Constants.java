@@ -22,7 +22,7 @@ public final class Constants {
               0.5 * Units.lbsToKilograms(3) * Math.pow(Units.inchesToMeters(6), 2); // 1/2*M*R^2
         public static final double FLYWHEEL_GEARING = 1.0;
 
-        public static final double KP = 0.0;
+        public static final double KP = 0.1;
         public static final double KI = 0.0;
         public static final double KD = 0.0;
         public static final double KFF = 2.2 / 1200;
