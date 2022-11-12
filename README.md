@@ -26,3 +26,5 @@ Clone the repo:
   - Compiles java code
 - `Test`
   - Runs all test cases (do this to see if the assignment was completed correctly)
+- `simulateJava`
+  - Starts the simulation GUI
