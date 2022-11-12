@@ -2,7 +2,8 @@ package robot.flywheel;
 
 import static org.junit.Assert.*;
 import edu.wpi.first.hal.HAL;
-import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj.simulation.DriverStationSim;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.flywheel.FlywheelSubsystem;
 import frc.robot.flywheel.commands.SetFlywheelVelocity;
 import frc.robot.flywheel.commands.StopFlywheel;
@@ -16,58 +17,98 @@ public class SetFlywheelVelocityTest {
     @Before
     public void setup() {
         assert HAL.initialize(500, 0); // initialize the HAL, crash if failed
+        CommandScheduler.getInstance().enable(); 
+        DriverStationSim.setEnabled(true);
+
         flywheelSubsystem = new FlywheelSubsystem();
     }
 
     @Test
-    public void setVelocityTo0Percent() {
-        SetFlywheelVelocity setVelocityCommand50 = new SetFlywheelVelocity(flywheelSubsystem, 0.0);
-        runCommandForSeconds(0.5, setVelocityCommand50);
-        assertEquals("Set Speed to 0%", flywheelSubsystem.getPercentSpeed(), 0.0, DELTA);
+    public void setVelocity0(){
+        StopFlywheel stopFlywheelCommand = new StopFlywheel(flywheelSubsystem);
+        CommandScheduler.getInstance().schedule(stopFlywheelCommand);
+
+        runScheduler(0.5);
+        assertEquals("Stops flywheel", flywheelSubsystem.getPercentSpeed(), 0.0, DELTA);
     }
 
     @Test
-    public void setVelocityTo50Percent() {
-        SetFlywheelVelocity setVelocityCommand50 = new SetFlywheelVelocity(flywheelSubsystem, 0.5);
-        runCommandForSeconds(0.5, setVelocityCommand50);
-        assertEquals("Set Speed to 50%", flywheelSubsystem.getPercentSpeed(), 0.5, DELTA);
-    }
-
-    @Test
-    public void setVelocityTo100Percent() {
+    public void setVelocity100(){
         SetFlywheelVelocity setVelocityCommand100 = new SetFlywheelVelocity(flywheelSubsystem, 1.0);
-        runCommandForSeconds(0.5, setVelocityCommand100);
+        CommandScheduler.getInstance().schedule(setVelocityCommand100);
+
+        runScheduler(0.5);
         assertEquals("Set Speed to 100", flywheelSubsystem.getPercentSpeed(), 1.0, DELTA);
+    }
+
+    @Test
+    public void setVelocity50(){
+        SetFlywheelVelocity setVelocityCommand50 = new SetFlywheelVelocity(flywheelSubsystem, 0.5);
+        CommandScheduler.getInstance().schedule(setVelocityCommand50);
+
+        runScheduler(0.5);
+        assertEquals("Set Speed to 50%", flywheelSubsystem.getPercentSpeed(), 0.5, DELTA);
     }
 
     /*
      * Runs the flywheel at 100%, then stops it, then at 50%
     */
-    @Test()
+    @Test
     public void customVelocityRoutine() {
         SetFlywheelVelocity setVelocityCommand100 = new SetFlywheelVelocity(flywheelSubsystem, 1.0);
-        runCommandForSeconds(0.5, setVelocityCommand100);
+        CommandScheduler.getInstance().schedule(setVelocityCommand100);
+
+        runScheduler(0.5);
         assertEquals("Set Speed to 100", flywheelSubsystem.getPercentSpeed(), 1.0, DELTA);
 
         StopFlywheel stopFlywheelCommand = new StopFlywheel(flywheelSubsystem);
-        runCommandForSeconds(0.5, stopFlywheelCommand);
+        CommandScheduler.getInstance().schedule(stopFlywheelCommand);
+
+        runScheduler(0.5);
         assertEquals("Stops flywheel", flywheelSubsystem.getPercentSpeed(), 0.0, DELTA);
 
         SetFlywheelVelocity setVelocityCommand50 = new SetFlywheelVelocity(flywheelSubsystem, 0.5);
-        runCommandForSeconds(0.5, setVelocityCommand50);
+        CommandScheduler.getInstance().schedule(setVelocityCommand50);
+
+        runScheduler(0.5);
         assertEquals("Set Speed to 50%", flywheelSubsystem.getPercentSpeed(), 0.5, DELTA);
     }
 
-     private static void runCommandForSeconds(double seconds, Command... commands) {
-        for (Command c : commands) {
-            c.initialize();
-        }
+    /*
+     * Cancels a command when another command with the same subsystem is run
+     */
+    @Test
+    public void subsystemRequirementsSet() {
+        SetFlywheelVelocity setVelocityCommand100 = new SetFlywheelVelocity(flywheelSubsystem, 1.0);
+        StopFlywheel stopFlywheelCommand = new StopFlywheel(flywheelSubsystem);
+
+        CommandScheduler.getInstance().schedule(setVelocityCommand100);
+        CommandScheduler.getInstance().schedule(stopFlywheelCommand);
+
+        runScheduler(0.5);
+
+        boolean isStopScheduled = CommandScheduler.getInstance().isScheduled(stopFlywheelCommand);
+        assertEquals(isStopScheduled, true);
+        boolean isVelocityScheduled = CommandScheduler.getInstance().isScheduled(setVelocityCommand100);
+        assertEquals(isVelocityScheduled, false);
+    }
+
+    @Test
+    public void checkFollowing() {
+        SetFlywheelVelocity setVelocityCommand = new SetFlywheelVelocity(flywheelSubsystem, 0.12);
+
+        CommandScheduler.getInstance().schedule(setVelocityCommand);
+        runScheduler(0.5);
+        System.out.println(CommandScheduler.getInstance().timeSinceScheduled(setVelocityCommand));
+        //run and check both speeds
+        assertEquals("Is Right Following Left?", flywheelSubsystem.getPercentSpeed(), flywheelSubsystem.getFollowingPercentSpeed(), DELTA);
+    }
+
+     private static void runScheduler(double seconds) {
         try {
             for (int i = 0; i < 10; ++i) {
                 com.ctre.phoenix.unmanaged.Unmanaged.feedEnable(100);
-                for (Command c : commands) {
-                    c.execute();
-                }
+                CommandScheduler.getInstance().run();
                 Thread.sleep((long) (seconds * 100));
             }
         } catch (InterruptedException e) {
