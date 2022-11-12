@@ -13,4 +13,8 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    public static class FlywheelConstants {
+        public static final int LEFT_CAN_ID = 10;
+        public static final int RIGHT_CAN_ID = 11;
+    }
 }
