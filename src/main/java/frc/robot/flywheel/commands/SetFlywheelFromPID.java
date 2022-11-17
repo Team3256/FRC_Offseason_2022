@@ -12,6 +12,19 @@ public class SetFlywheelFromPID extends PIDCommand {
     DoubleSupplier velocity;
     FlywheelSubsystem flywheelSubsystem;
 
+    public SetFlywheelFromPID(FlywheelSubsystem flywheelSubsystem) {
+        super(
+                new PIDController(FlywheelConstants.KP, FlywheelConstants.KI, FlywheelConstants.KD),
+                flywheelSubsystem::getAngularVelocityRPM,
+                SmartDashboard.getNumber("Velocity Setpoint", 1200),
+                voltage -> flywheelSubsystem.setInputVoltage(voltage + SmartDashboard.getNumber("Velocity Setpoint", 1200) * SmartDashboard.getNumber("Flywheel KFF", FlywheelConstants.KFF)),
+                flywheelSubsystem
+             );
+
+        this.velocity = () -> SmartDashboard.getNumber("Velocity Setpoint", 1200);
+        this.flywheelSubsystem = flywheelSubsystem;
+    }
+
     public SetFlywheelFromPID(FlywheelSubsystem flywheelSubsystem, DoubleSupplier velocity) {
         super(
             new PIDController(FlywheelConstants.KP, FlywheelConstants.KI, FlywheelConstants.KD),
@@ -19,7 +32,7 @@ public class SetFlywheelFromPID extends PIDCommand {
             velocity,
             voltage -> flywheelSubsystem.setInputVoltage(voltage + velocity.getAsDouble() * FlywheelConstants.KFF),
             flywheelSubsystem
-        );
+            );
 
         this.velocity = velocity;
         this.flywheelSubsystem = flywheelSubsystem;
@@ -41,6 +54,8 @@ public class SetFlywheelFromPID extends PIDCommand {
     @Override
     public void initialize() {
         SmartDashboard.putData(getController());
+        SmartDashboard.putNumber("Velocity Setpoint", 1200);
+        SmartDashboard.putNumber("Flywheel KFF", FlywheelConstants.KFF);
     }
 
     @Override
@@ -51,6 +66,5 @@ public class SetFlywheelFromPID extends PIDCommand {
     @Override
     public void execute() {
         super.execute();
-        SmartDashboard.putNumber("Velocity Setpoint", velocity.getAsDouble());
     }
 }

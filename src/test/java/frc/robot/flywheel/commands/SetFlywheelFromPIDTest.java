@@ -12,7 +12,7 @@ import frc.robot.flywheel.FlywheelSubsystem;
 import org.junit.*;
 
 public class SetFlywheelFromPIDTest {
-    public static final double DELTA = 10; // acceptable deviation range
+    public static final double DELTA = 20; // acceptable deviation range
     public static final double PID_TIMEOUT = 2;
 
     @Before

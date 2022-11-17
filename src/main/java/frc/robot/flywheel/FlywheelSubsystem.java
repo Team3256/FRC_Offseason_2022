@@ -68,26 +68,16 @@ public class FlywheelSubsystem extends SubsystemBase {
     }
 
     public void setInputVoltage(double voltage) {
+        periodicIO.voltage = MathUtil.clamp(voltage, 0, 12);
         if (RobotBase.isSimulation()) {
-            double noise =
-                Math.random() * SimConstants.VOLTAGE_NOISE_RANGE - SimConstants.VOLTAGE_NOISE_RANGE / 2; // From -0.5*noise to 0.5*noise
-            periodicIO.voltage = MathUtil.clamp(noise + voltage, 0, 12);
-
             flywheelSim.setInputVoltage(periodicIO.voltage);
         } else {
-            periodicIO.voltage = MathUtil.clamp(voltage + (2.20), 0, 12);
+            masterLeftShooterMotor.set(ControlMode.PercentOutput, periodicIO.voltage / 12);
         }
     }
 
     public double getAngularVelocityRPM() {
         return periodicIO.angularVelocity;
-    }
-
-    @Override
-    public void periodic() {
-        if (RobotBase.isReal()) {
-            masterLeftShooterMotor.set(ControlMode.PercentOutput, periodicIO.voltage / 12);
-        }
     }
 
     @Override
