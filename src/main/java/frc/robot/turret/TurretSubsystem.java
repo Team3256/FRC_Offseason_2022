@@ -16,24 +16,22 @@ public class TurretSubsystem extends SubsystemBase {
 
     /*
      * Initialize hardware
-     * 1 Master WPI_TalonFX 
+     * 1 Master TalonFX 
      */
     public TurretSubsystem() {
-        turretMotor = new TalonFX(TurrentConstants.TURRENT_ID);
     }
 
     /*
-     * Set the positing of the turrent
+     * Set the position of the turrent
      */
     public void setPosition(double position) {
-        turretMotor.set(ControlMode.Position, position);
     }
 
     /*
      * Get the current position of the turret
      */
     public double getPosition() {
-        return turretMotor.getSelectedSensorPosition();
+        return 0.0;
     }
 }
 

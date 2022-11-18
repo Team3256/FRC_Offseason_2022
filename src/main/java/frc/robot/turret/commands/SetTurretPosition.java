@@ -15,11 +15,11 @@ public class SetTurretPosition extends PIDCommand {
 
     public SetTurretPosition(TurretSubsystem turretSubsystem, DoubleSupplier position) {
         super(
-                new PIDController(TurrentConstants.KP, TurrentConstants.KI, TurrentConstants.KD),
-                turretSubsystem::getPosition,
-                position,
-                turretSubsystem::setPosition,
-                turretSubsystem
+                /* PIDController */,
+                /* Measurement Source */,
+                /* Setpoint */,
+                /* Input source */,
+                /* Requirements */,
              );
 
         this.position = position;

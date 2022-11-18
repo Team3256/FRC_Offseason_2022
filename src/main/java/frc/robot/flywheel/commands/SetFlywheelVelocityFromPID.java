@@ -16,31 +16,19 @@ public class SetFlywheelVelocityFromPID extends PIDCommand {
     DoubleSupplier velocity;
     FlywheelSubsystem flywheelSubsystem;
 
-    // public SetFlywheelVelocityFromPID(FlywheelSubsystem flywheelSubsystem) {
-    //     super(
-    //             /* PIDController */,
-    //             /* Measurement Source */,
-    //             /* Setpoint */,
-    //             /* Input source */,
-    //             /* Requirements */,
-    //          );
-    //
-    //     this.velocity = velocity;
-    //     this.flywheelSubsystem = flywheelSubsystem;
-    // }
-
-    public SetFlywheelVelocityFromPID(FlywheelSubsystem flywheelSubsystem, DoubleSupplier velocity) {
+    public SetFlywheelVelocityFromPID(FlywheelSubsystem flywheelSubsystem) {
         super(
-                new PIDController(FlywheelConstants.KP, FlywheelConstants.KI, FlywheelConstants.KD),
-                flywheelSubsystem::getVelocity,
-                velocity,
-                flywheelSubsystem::setVoltage,
-                flywheelSubsystem
+                /* PIDController */,
+                /* Measurement Source */,
+                /* Setpoint */,
+                /* Input source */,
+                /* Requirements */,
              );
 
         this.velocity = velocity;
         this.flywheelSubsystem = flywheelSubsystem;
     }
+
 
     @Override
     public void execute() {

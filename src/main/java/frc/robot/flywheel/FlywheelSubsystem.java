@@ -20,37 +20,34 @@ public class FlywheelSubsystem extends SubsystemBase {
      * Total: 2 TalonFX motors
      */
     public FlywheelSubsystem() {
-        leftMaster = new WPI_TalonFX(FlywheelConstants.LEFT_CAN_ID);
-        rightFollower = new WPI_TalonFX(FlywheelConstants.RIGHT_CAN_ID);
-        rightFollower.follow(leftMaster);
     }
 
     /*
      * Stop the flywheel from moving
      */
     public void stopFlywheel() {
-        leftMaster.neutralOutput();
     }
 
     /*
      * Set the voltage of the motor 
      */
     public void setVoltage(double voltage) {
-        leftMaster.setVoltage(voltage);
     }
 
     /*
      * Get the selected sensor velocity of the master motor and convert to rpm
      */
     public double getVelocity() {
-        return rightFollower.getSelectedSensorVelocity() * 600/2048;
+        // conversion factor: 600/2048;
+        return 0.0;
     }
 
     /*
      * Get the seleceted sensor velocity of the following motor
      */
     public double getFollowingVelocity() {
-        return rightFollower.getSelectedSensorVelocity() * 600/2048;
+        // conversion factor: 600/2048;
+        return 0.0;
     }
 
 

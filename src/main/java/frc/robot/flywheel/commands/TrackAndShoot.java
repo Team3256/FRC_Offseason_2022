@@ -9,14 +9,11 @@ import frc.robot.turret.commands.SetTurretPosition;
 
 
 // TODO: Make this extend a command grouper and finish this class
-public class TrackAndShoot extends ParallelRaceGroup {
+public class TrackAndShoot extends /* Command group here */ {
     FlywheelSubsystem flywheelSubsystem;
     TurretSubsystem turretSubsystem;
 
-    public TrackAndShoot(TurretSubsystem turretSubsystem, FlywheelSubsystem flywheelSubsystem) {
-        addCommands(
-                new SetTurretPosition(turretSubsystem, Limelight::getTx),
-                new SetFlywheelVelocityFromPID(flywheelSubsystem, () -> 2000)
-                );
+    // Run both the SetFlywheelVelocity command and SetTurretPosition commands 
+    public TrackAndShoot() {
     }
 }
