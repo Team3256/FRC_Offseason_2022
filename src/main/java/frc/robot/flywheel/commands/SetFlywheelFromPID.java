@@ -11,6 +11,7 @@ import frc.robot.flywheel.FlywheelSubsystem;
 public class SetFlywheelFromPID extends PIDCommand {
     DoubleSupplier velocity;
     FlywheelSubsystem flywheelSubsystem;
+    boolean movingSetpoint = false;
 
     public SetFlywheelFromPID(FlywheelSubsystem flywheelSubsystem) {
         super(
@@ -34,6 +35,7 @@ public class SetFlywheelFromPID extends PIDCommand {
             flywheelSubsystem
             );
 
+        this.movingSetpoint = true;
         this.velocity = velocity;
         this.flywheelSubsystem = flywheelSubsystem;
     }
@@ -66,5 +68,7 @@ public class SetFlywheelFromPID extends PIDCommand {
     @Override
     public void execute() {
         super.execute();
+        if (movingSetpoint)
+            SmartDashboard.putNumber("Velocity Setpoint", velocity.getAsDouble());
     }
 }

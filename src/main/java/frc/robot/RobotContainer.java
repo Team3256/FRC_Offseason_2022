@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.flywheel.FlywheelSubsystem;
 import frc.robot.flywheel.commands.SetFlywheelFromPID;
+import frc.robot.flywheel.commands.SetFlywheelFromVoltage;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -41,6 +42,7 @@ public class RobotContainer {
 
         // flywheelSubsystem.setDefaultCommand(new SetFlywheelFromPID(flywheelSubsystem, Math.random() * 600 + 601));
         flywheelSubsystem.setDefaultCommand(new SetFlywheelFromPID(flywheelSubsystem));
+        // flywheelSubsystem.setDefaultCommand(new SetFlywheelFromVoltage(flywheelSubsystem));
     }
 
     /**

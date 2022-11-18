@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.simulation.RoboRioSim;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.FlywheelConstants;
-import frc.robot.Constants.SimConstants;
 
 public class FlywheelSubsystem extends SubsystemBase {
     public class PeriodicIO {
@@ -98,6 +97,6 @@ public class FlywheelSubsystem extends SubsystemBase {
     private void simulationOutputToDashboard() {
         SmartDashboard.putNumber("Flywheel Angular Velocity", periodicIO.angularVelocity);
         SmartDashboard.putNumber("Current Draw", periodicIO.currentDrawAmps);
-        SmartDashboard.putNumber("Flywheel Voltage", periodicIO.voltage);
+        SmartDashboard.putNumber("Flywheel Sim Voltage", periodicIO.voltage);
     }
 }

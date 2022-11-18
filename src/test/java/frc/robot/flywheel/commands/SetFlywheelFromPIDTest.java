@@ -77,27 +77,27 @@ public class SetFlywheelFromPIDTest {
 
     @Test
     public void testResponseWith1200RPM() {
-        testPIDResponse(1200, 0.3);
+        testPIDResponse(1200, 0.11);
     }
     
     @Test
     public void testResponseWith1800RPM() {
-        testPIDResponse(1800, 0.35);
+        testPIDResponse(1800, 0.11);
     }
 
     @Test
     public void testResponseWith2200RPM() {
-        testPIDResponse(2200, 0.43);
+        testPIDResponse(2200, 0.13);
     }
 
     @Test
     public void testResponseWith2500RPM() {
-        testPIDResponse(2500, 0.49);
+        testPIDResponse(2500, 0.13);
     }
 
     @Test
     public void testResponseWith3000RPM() {
-        testPIDResponse(3000, 0.64);
+        testPIDResponse(3000, 0.17);
     }
 
     private static void runSchedulerWithAssert(double seconds, BooleanSupplier test) {
