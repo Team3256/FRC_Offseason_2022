@@ -13,16 +13,26 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    public static class TransferConstants {
+        public static final double TRANSFER_REVERSE_SPEED = -0.25;
+        public static final double TRANSFER_FORWARD_SPEED = 0.75;
+    }
+
+    public static class IntakeConstants {
+        public static final double INTAKE_REVERSE_SPEED = -0.25;
+        public static final double INTAKE_FORWARD_SPEED = 0.75;
+    }
+
     public static class IDConstants {
         public static final int PNEUMATICS_HUB_ID = 17;
 
         public static final int INTAKE_MOTOR_ID = 5;
         public static final int TRANSFER_MOTOR_ID = 4;
 
-        public static final int INTAKE_SOLENOID_LEFT_BACKWARD = 3; //backward is up
+        public static final int INTAKE_SOLENOID_LEFT_BACKWARD = 1; //backward is up
         public static final int INTAKE_SOLENOID_RIGHT_BACKWARD = 5;
 
-        public static final int INTAKE_SOLENOID_LEFT_FORWARD = 4; // forward is down
+        public static final int INTAKE_SOLENOID_LEFT_FORWARD = 2; // forward is down
         public static final int INTAKE_SOLENOID_RIGHT_FORWARD = 6;
     }
 }

@@ -19,11 +19,20 @@ public class IntakeSubsystem extends SubsystemBase {
     private final TalonFX intakeMotor;
     private final DoubleSolenoid leftSolenoid;
     private final DoubleSolenoid rightSolenoid;
+    public static IntakeSubsystem instance;
+
+    public static IntakeSubsystem getInstance() {
+        if (instance != null)
+            return instance;
+        else
+            return new IntakeSubsystem();
+    }
+
 
     public IntakeSubsystem(){
         intakeMotor = new TalonFX(INTAKE_MOTOR_ID);
-        leftSolenoid = new DoubleSolenoid(PNEUMATICS_HUB_ID, PneumaticsModuleType.REVPH, INTAKE_SOLENOID_LEFT_FORWARD, INTAKE_SOLENOID_LEFT_BACKWARD);
         rightSolenoid = new DoubleSolenoid(PNEUMATICS_HUB_ID, PneumaticsModuleType.REVPH, INTAKE_SOLENOID_RIGHT_FORWARD, INTAKE_SOLENOID_RIGHT_BACKWARD);
+        leftSolenoid = new DoubleSolenoid(PNEUMATICS_HUB_ID, PneumaticsModuleType.REVPH, INTAKE_SOLENOID_LEFT_FORWARD, INTAKE_SOLENOID_LEFT_BACKWARD);
     }
 
     public void setPercentSpeed(double percentSpeed){
