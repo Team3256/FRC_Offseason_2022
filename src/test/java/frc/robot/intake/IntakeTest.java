@@ -47,8 +47,10 @@ public class IntakeTest {
     @Test
     public void checkExtend(){
         intakeSubsystem.extend();
+        System.out.println(intakeSubsystem.getLeftSolenoid());
+        System.out.println(intakeSubsystem.getRightSolenoid());
         assertEquals("Ran intake extend method. Checking Left solenoid", intakeSubsystem.getLeftSolenoid(), DoubleSolenoid.Value.kForward);
-//        assertEquals("Ran intake extend method. Checking Right solenoid", intakeSubsystem.getRightSolenoid(), DoubleSolenoid.Value.kForward);
+        assertEquals("Ran intake extend method. Checking Right solenoid", intakeSubsystem.getRightSolenoid(), DoubleSolenoid.Value.kForward);
     }
 
 //    @Test

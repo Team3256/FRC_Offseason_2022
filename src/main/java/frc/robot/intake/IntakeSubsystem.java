@@ -6,8 +6,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import frc.robot.Constants.IDConstants;
-import frc.robot.Constants.IntakeConstants;
+import static frc.robot.Constants.IDConstants.*;
 
 
 public class IntakeSubsystem extends SubsystemBase {
@@ -22,9 +21,9 @@ public class IntakeSubsystem extends SubsystemBase {
     private final DoubleSolenoid rightSolenoid;
 
     public IntakeSubsystem(){
-        intakeMotor = new TalonFX(IDConstants.INTAKE_MOTOR_ID);
-        leftSolenoid = new DoubleSolenoid(IDConstants.PNEUMATICS_HUB_ID, PneumaticsModuleType.REVPH, 11, 12);
-        rightSolenoid = new DoubleSolenoid(IDConstants.PNEUMATICS_HUB_ID, PneumaticsModuleType.REVPH, 5, 6);
+        intakeMotor = new TalonFX(INTAKE_MOTOR_ID);
+        leftSolenoid = new DoubleSolenoid(PNEUMATICS_HUB_ID, PneumaticsModuleType.REVPH, INTAKE_SOLENOID_LEFT_FORWARD, INTAKE_SOLENOID_LEFT_BACKWARD);
+        rightSolenoid = new DoubleSolenoid(PNEUMATICS_HUB_ID, PneumaticsModuleType.REVPH, INTAKE_SOLENOID_RIGHT_FORWARD, INTAKE_SOLENOID_RIGHT_BACKWARD);
     }
 
     public void setPercentSpeed(double percentSpeed){
