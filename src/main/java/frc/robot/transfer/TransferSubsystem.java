@@ -10,8 +10,6 @@ import frc.robot.Constants.IDConstants;
 
 public class TransferSubsystem extends SubsystemBase {
 
-    private TalonFX transferMotor;
-
     public TransferSubsystem(){
         transferMotor = new TalonFX(IDConstants.TRANSFER_MOTOR_ID);
     }

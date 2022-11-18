@@ -9,60 +9,54 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.Constants.IDConstants.*;
 
 
+// TODO: Finish this class
 public class IntakeSubsystem extends SubsystemBase {
 
     /*
         Create 1 TalonFX intake Motor
-        Create 2 DoubleSolenoid intake objects
+        Create 2 DoubleSolenoid intake objects (left and right)
      */
 
-    private final TalonFX intakeMotor;
-    private final DoubleSolenoid leftSolenoid;
-    private final DoubleSolenoid rightSolenoid;
-    public static IntakeSubsystem instance;
-
-    public static IntakeSubsystem getInstance() {
-        if (instance != null)
-            return instance;
-        else
-            return new IntakeSubsystem();
-    }
-
-
     public IntakeSubsystem(){
-        intakeMotor = new TalonFX(INTAKE_MOTOR_ID);
-        rightSolenoid = new DoubleSolenoid(PNEUMATICS_HUB_ID, PneumaticsModuleType.REVPH, INTAKE_SOLENOID_RIGHT_FORWARD, INTAKE_SOLENOID_RIGHT_BACKWARD);
-        leftSolenoid = new DoubleSolenoid(PNEUMATICS_HUB_ID, PneumaticsModuleType.REVPH, INTAKE_SOLENOID_LEFT_FORWARD, INTAKE_SOLENOID_LEFT_BACKWARD);
     }
 
     public void setPercentSpeed(double percentSpeed){
-        intakeMotor.set(ControlMode.PercentOutput, percentSpeed);
     }
 
     public double getPercentSpeed(){
-        return intakeMotor.getMotorOutputPercent();
+        return 0.0;
     }
 
+    /* 
+     * Set both left and right solenoids to kForward
+     */
     public void extend(){
-        leftSolenoid.set(DoubleSolenoid.Value.kForward);
-        rightSolenoid.set(DoubleSolenoid.Value.kForward);
     }
 
+    /* 
+     * Set both left and right solenoids to kReverse
+     */
     public void retract(){
-        leftSolenoid.set(DoubleSolenoid.Value.kReverse);
-        rightSolenoid.set(DoubleSolenoid.Value.kReverse);
     }
 
+    /*
+     * Return the state of the left solenoid
+     */
     public DoubleSolenoid.Value getLeftSolenoid(){
-        return leftSolenoid.get();
+        return DoubleSolenoid.Value.kOff;
     }
 
+    /*
+     * Return the state of the right solenoid
+     */
     public DoubleSolenoid.Value getRightSolenoid(){
-        return rightSolenoid.get();
+        return DoubleSolenoid.Value.kOff;
     }
 
+    /*
+     * Turn off the intake motor
+     */
     public void off(){
-        intakeMotor.neutralOutput();
     }
 
 }

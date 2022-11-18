@@ -8,18 +8,16 @@ public class TransferReverse extends CommandBase{
     TransferSubsystem transferSubsystem;
 
     public TransferReverse(TransferSubsystem transferSubsystem) {
-        this.transferSubsystem = transferSubsystem;
-
-        addRequirements(transferSubsystem);
     }
 
+    /*
+     * Run the transfer at the percent speed defined in TransferConstants
+     */
     @Override
     public void initialize() {
-        transferSubsystem.setPercentSpeed(TransferConstants.TRANSFER_REVERSE_SPEED);
     }
 
     @Override
     public void end(boolean interrupted) {
-        transferSubsystem.off();
     }
 }
