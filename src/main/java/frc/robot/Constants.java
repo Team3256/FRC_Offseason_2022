@@ -25,7 +25,7 @@ public final class Constants {
         public static final double KP = 0.01;
         public static final double KI = 0.0;
         public static final double KD = 0.0;
-        public static final double KFF = 0.0;
+        public static final double KFF = 0.0018698999;
     }
 
     public static class SimConstants {
