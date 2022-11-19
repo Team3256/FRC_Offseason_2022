@@ -23,5 +23,6 @@ public class TransferForward extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
+        transfer.off();
     }
 }

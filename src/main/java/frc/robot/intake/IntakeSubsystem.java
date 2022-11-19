@@ -1,39 +1,37 @@
 package frc.robot.intake;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 
 import static frc.robot.Constants.IDConstants.*;
 
 
 //DONE
 public class IntakeSubsystem extends SubsystemBase {
-    private TalonFX motor;
+    private TalonFX intakeMotor;
     private DoubleSolenoid leftSolenoid;
     private DoubleSolenoid rightSolenoid;
 
     public IntakeSubsystem(){
-        motor = new TalonFX(INTAKE_MOTOR_ID);
+        intakeMotor = new TalonFX(INTAKE_MOTOR_ID);
         leftSolenoid = new DoubleSolenoid(PneumaticsModuleType.REVPH,INTAKE_SOLENOID_LEFT_FORWARD, INTAKE_SOLENOID_LEFT_BACKWARD);
         rightSolenoid = new DoubleSolenoid(PneumaticsModuleType.REVPH,INTAKE_SOLENOID_RIGHT_FORWARD, INTAKE_SOLENOID_RIGHT_BACKWARD);
     }
 
     public void setPercentSpeed(double percentSpeed){
-        motor.set(TalonFXControlMode.PercentOutput, percentSpeed);
+        intakeMotor.set(TalonFXControlMode.PercentOutput, percentSpeed);
     }
 
     /*
      * Turn off the intake motor
      */
-    public void off(){ motor.neutralOutput(); }
+    public void off(){ intakeMotor.neutralOutput(); }
 
     public double getPercentSpeed(){
-        return motor.getMotorOutputPercent();
+        return intakeMotor.getMotorOutputPercent();
     }
 
     /* 

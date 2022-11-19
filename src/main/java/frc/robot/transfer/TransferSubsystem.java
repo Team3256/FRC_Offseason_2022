@@ -11,21 +11,21 @@ import frc.robot.Constants.IDConstants;
 
 //DONE
 public class TransferSubsystem extends SubsystemBase {
-    private TalonFX motor;
+    private TalonFX transferMotor;
 
     public TransferSubsystem(){
-        motor = new TalonFX(IDConstants.TRANSFER_MOTOR_ID);
+        transferMotor = new TalonFX(IDConstants.TRANSFER_MOTOR_ID);
     }
 
     public void setPercentSpeed(double percentSpeed){
-        motor.set(TalonFXControlMode.PercentOutput, percentSpeed);
+        transferMotor.set(TalonFXControlMode.PercentOutput, percentSpeed);
     }
 
     public double getPercentSpeed(){
-        return motor.getMotorOutputPercent();
+        return transferMotor.getMotorOutputPercent();
     }
 
     public void off(){
-        motor.neutralOutput();
+        transferMotor.neutralOutput();
     }
 }

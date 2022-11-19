@@ -23,5 +23,6 @@ public class IntakeReverse extends CommandBase{
 
     @Override
     public void end(boolean interrupted) {
+        intake.off();
     }
 }
