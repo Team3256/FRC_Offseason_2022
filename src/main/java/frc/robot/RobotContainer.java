@@ -10,6 +10,10 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.intake.IntakeSubsystem;
+import frc.robot.intake.commands.IntakeForward;
+import frc.robot.transfer.TransferSubsystem;
+import frc.robot.transfer.commands.TransferForward;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -20,6 +24,9 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
     private final XboxController driverController = new XboxController(0);
     private final XboxController operatorController = new XboxController(1);
+
+    private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+    private final TransferSubsystem transferSubsystem = new TransferSubsystem();
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -35,9 +42,8 @@ public class RobotContainer {
     */
     private void configureButtonBindings() {
         Button driverLeftBumper = new JoystickButton(driverController, XboxController.Button.kLeftBumper.value);
-
-        // TODO: Make the intake and transfer run on button press using command groups
-
+        driverLeftBumper.whenHeld(new IntakeForward(intakeSubsystem));
+        driverLeftBumper.whenHeld(new TransferForward(transferSubsystem));
     }
 
     /**

@@ -1,26 +1,33 @@
 package frc.robot.transfer;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.networktables.TableListener;
 import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import frc.robot.Constants;
 import frc.robot.Constants.IDConstants;
 
-// TODO: Finish this class
 public class TransferSubsystem extends SubsystemBase {
 
+    private TalonFX transferMotor;
+
     public TransferSubsystem(){
+        transferMotor = new TalonFX(IDConstants.TRANSFER_MOTOR_ID);
     }
 
     public void setPercentSpeed(double percentSpeed){
+        transferMotor.set(TalonFXControlMode.PercentOutput, percentSpeed);
     }
 
     public double getPercentSpeed(){
-        return 0.0;
+        return transferMotor.getMotorOutputPercent();
     }
 
     public void off(){
+        transferMotor.setNeutralMode(NeutralMode.Brake);
     }
 }
