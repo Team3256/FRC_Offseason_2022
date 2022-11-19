@@ -10,10 +10,10 @@ import frc.robot.turret.TurretSubsystem;
 
 // TODO: Finish this command
 public class SetTurretPosition extends PIDCommand {
-    private double position;
+    private DoubleSupplier position;
     private TurretSubsystem turretSubsystem;
 
-    public SetTurretPosition(TurretSubsystem turretSubsystem, double position) {
+    public SetTurretPosition(TurretSubsystem turretSubsystem, DoubleSupplier position) {
         super(
                 new PIDController(TurrentConstants.KP,TurrentConstants.KI,TurrentConstants.KD),
                 turretSubsystem::getPosition,

@@ -17,8 +17,8 @@ public class TrackAndShoot extends ParallelCommandGroup {
     public TrackAndShoot(FlywheelSubsystem flywheelSubsystem, TurretSubsystem turretSubsystem) {
         addCommands(
                 //set flywheel velocity
-                new SetFlywheelVelocityFromPID(flywheelSubsystem, Limelight.getTy()),
+                new SetFlywheelVelocityFromPID(flywheelSubsystem, Limelight::getTy),
                 //set turret position
-                new SetTurretPosition(turretSubsystem, Limelight.getTx()));
+                new SetTurretPosition(turretSubsystem, Limelight::getTx));
     }
 }

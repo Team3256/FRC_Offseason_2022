@@ -13,10 +13,10 @@ import frc.robot.flywheel.FlywheelSubsystem;
  */
 // TODO: Finish this command
 public class SetFlywheelVelocityFromPID extends PIDCommand {
-    double velocity;
-    FlywheelSubsystem flywheelSubsystem;
+    private DoubleSupplier velocity;
+    private FlywheelSubsystem flywheelSubsystem;
 
-    public SetFlywheelVelocityFromPID(FlywheelSubsystem flywheelSubsystem, double velocity) {
+    public SetFlywheelVelocityFromPID(FlywheelSubsystem flywheelSubsystem, DoubleSupplier velocity) {
         super(
                 new PIDController(FlywheelConstants.KP,FlywheelConstants.KI,FlywheelConstants.KD),
                 flywheelSubsystem::getVelocity,
