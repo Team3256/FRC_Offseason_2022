@@ -39,7 +39,7 @@ public class RobotContainer {
     private void configureFlywheel() {
         flywheelSubsystem = new FlywheelSubsystem();
         // flywheelSubsystem.setDefaultCommand(new SetFlywheelFromPID(flywheelSubsystem, Math.random() * 600 + 601));
-        flywheelSubsystem.setDefaultCommand(new SetFlywheelFromPID(flywheelSubsystem, 1200));
+        flywheelSubsystem.setDefaultCommand(new SetFlywheelFromPID(flywheelSubsystem, 2500));
     }
 
     /**
