@@ -4,9 +4,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.IntakeConstants;
 import frc.robot.intake.IntakeSubsystem;
 
-// TODO: Finish this class
+//DONE
 public class IntakeForward extends CommandBase {
+    private IntakeSubsystem intake;
+
     public IntakeForward(IntakeSubsystem intakeSubsystem) {
+        addRequirements(intakeSubsystem);
+        intake = intakeSubsystem;
     }
 
     /*
@@ -14,6 +18,8 @@ public class IntakeForward extends CommandBase {
      */
     @Override
     public void initialize() {
+        intake.extend();
+        intake.setPercentSpeed(IntakeConstants.INTAKE_FORWARD_SPEED);
     }
 
     @Override

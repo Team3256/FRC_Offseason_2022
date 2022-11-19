@@ -4,11 +4,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.TransferConstants;
 import frc.robot.transfer.TransferSubsystem;
 
-// TODO: Finish this class
+//DONE
 public class TransferForward extends CommandBase {
-    TransferSubsystem transferSubsystem;
+    private TransferSubsystem transfer;
 
     public TransferForward(TransferSubsystem transferSubsystem) {
+        addRequirements(transferSubsystem);
+        transfer=transferSubsystem;
     }
 
     /*
@@ -16,6 +18,7 @@ public class TransferForward extends CommandBase {
      */
     @Override
     public void initialize() {
+        transfer.setPercentSpeed(TransferConstants.TRANSFER_FORWARD_SPEED);
     }
 
     @Override
