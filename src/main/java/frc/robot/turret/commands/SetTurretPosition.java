@@ -8,18 +8,17 @@ import edu.wpi.first.wpilibj2.command.PIDCommand;
 import frc.robot.Constants.TurrentConstants;
 import frc.robot.turret.TurretSubsystem;
 
-// TODO: Finish this command
 public class SetTurretPosition extends PIDCommand {
     DoubleSupplier position;
     TurretSubsystem turretSubsystem;
 
     public SetTurretPosition(TurretSubsystem turretSubsystem, DoubleSupplier position) {
         super(
-                /* PIDController */,
-                /* Measurement Source */,
-                /* Setpoint */,
-                /* Input source */,
-                /* Requirements */,
+                new PIDController(TurrentConstants.KP, TurrentConstants.KI, TurrentConstants.KD),
+                turretSubsystem::getPosition,
+                position,
+                turretSubsystem::setPosition,
+                turretSubsystem
              );
 
         this.position = position;

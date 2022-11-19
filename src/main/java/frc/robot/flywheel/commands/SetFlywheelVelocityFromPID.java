@@ -5,6 +5,7 @@ import java.util.function.DoubleSupplier;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
+import frc.robot.Constants;
 import frc.robot.Constants.FlywheelConstants;
 import frc.robot.flywheel.FlywheelSubsystem;
 
@@ -16,13 +17,13 @@ public class SetFlywheelVelocityFromPID extends PIDCommand {
     DoubleSupplier velocity;
     FlywheelSubsystem flywheelSubsystem;
 
-    public SetFlywheelVelocityFromPID(FlywheelSubsystem flywheelSubsystem) {
+    public SetFlywheelVelocityFromPID(FlywheelSubsystem flywheelSubsystem, DoubleSupplier velocity) {
         super(
-                /* PIDController */,
-                /* Measurement Source */,
-                /* Setpoint */,
-                /* Input source */,
-                /* Requirements */,
+                new PIDController(FlywheelConstants.KP, FlywheelConstants.KI, FlywheelConstants.KD),
+                flywheelSubsystem::getVelocity,
+                velocity,
+                flywheelSubsystem::setVoltage,
+                flywheelSubsystem
              );
 
         this.velocity = velocity;
