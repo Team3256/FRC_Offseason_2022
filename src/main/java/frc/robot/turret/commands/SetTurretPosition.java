@@ -5,21 +5,21 @@ import java.util.function.DoubleSupplier;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
-import frc.robot.Constants.TurrentConstants;
+import static frc.robot.Constants.TurrentConstants.*;
 import frc.robot.turret.TurretSubsystem;
 
-// TODO: Finish this command
+
 public class SetTurretPosition extends PIDCommand {
     DoubleSupplier position;
     TurretSubsystem turretSubsystem;
 
     public SetTurretPosition(TurretSubsystem turretSubsystem, DoubleSupplier position) {
         super(
-                /* PIDController */,
-                /* Measurement Source */,
-                /* Setpoint */,
-                /* Input source */,
-                /* Requirements */,
+                new PIDController(KP, KI, KD),
+                turretSubsystem::getPosition,
+                position,
+                turretSubsystem::setPosition,
+                turretSubsystem
              );
 
         this.position = position;
@@ -30,5 +30,10 @@ public class SetTurretPosition extends PIDCommand {
     public void execute() {
         super.execute();
         SmartDashboard.putNumber("Turret Position", turretSubsystem.getPosition());
+    }
+
+    @Override
+    public boolean isFinished() {
+        return getController().atSetpoint();
     }
 }

@@ -1,17 +1,18 @@
 package frc.robot.flywheel;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.FlywheelConstants;
+import static frc.robot.Constants.FlywheelConstants.*;
 
 /*
  * A class to control the hardware associated with the flywheeel subsystem
  */
 // TODO: Finish this class
 public class FlywheelSubsystem extends SubsystemBase {
-    WPI_TalonFX leftMaster;
-    WPI_TalonFX rightFollower;
+    private WPI_TalonFX leftMaster;
+    private WPI_TalonFX rightFollower;
 
     /*
      * Initialize hardware
@@ -20,18 +21,24 @@ public class FlywheelSubsystem extends SubsystemBase {
      * Total: 2 TalonFX motors
      */
     public FlywheelSubsystem() {
+        leftMaster = new WPI_TalonFX(LEFT_CAN_ID);
+        rightFollower = new WPI_TalonFX(RIGHT_CAN_ID);
+        rightFollower.follow(leftMaster);
+
     }
 
     /*
      * Stop the flywheel from moving
      */
     public void stopFlywheel() {
+        leftMaster.neutralOutput();
     }
 
     /*
      * Set the voltage of the motor 
      */
     public void setVoltage(double voltage) {
+        leftMaster.setVoltage(voltage);
     }
 
     /*
@@ -39,15 +46,15 @@ public class FlywheelSubsystem extends SubsystemBase {
      */
     public double getVelocity() {
         // conversion factor: 600/2048;
-        return 0.0;
+        return leftMaster.getSelectedSensorVelocity()*600/2048;
     }
 
     /*
-     * Get the seleceted sensor velocity of the following motor
+     * Get the selected sensor velocity of the following motor
      */
     public double getFollowingVelocity() {
         // conversion factor: 600/2048;
-        return 0.0;
+        return rightFollower.getSelectedSensorVelocity()*600/2048;
     }
 
 
