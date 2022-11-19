@@ -4,7 +4,8 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.TransferConstants;
 import frc.robot.transfer.TransferSubsystem;
 
-public class TransferReverse extends CommandBase{
+// TODO: Finish this class
+public class TransferReverse extends CommandBase {
     TransferSubsystem transferSubsystem;
 
     public TransferReverse(TransferSubsystem transferSubsystem) {

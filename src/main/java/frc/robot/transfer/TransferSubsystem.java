@@ -8,21 +8,19 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants.IDConstants;
 
+// TODO: Finish this class
 public class TransferSubsystem extends SubsystemBase {
 
     public TransferSubsystem(){
-        transferMotor = new TalonFX(IDConstants.TRANSFER_MOTOR_ID);
     }
 
     public void setPercentSpeed(double percentSpeed){
-        transferMotor.set(ControlMode.PercentOutput, percentSpeed);
     }
 
     public double getPercentSpeed(){
-        return transferMotor.getMotorOutputPercent();
+        return 0.0;
     }
 
     public void off(){
-        transferMotor.neutralOutput();
     }
 }
