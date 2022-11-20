@@ -20,6 +20,7 @@ import frc.robot.flywheel.commands.SetFlywheelFromVoltage;
  * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
  * subsystems, commands, and button mappings) should be declared here.
  */
+
 public class RobotContainer {
     private FlywheelSubsystem flywheelSubsystem;
 
@@ -37,12 +38,13 @@ public class RobotContainer {
     * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
     */
     private void configureButtonBindings() {}
+
     private void configureFlywheel() {
         flywheelSubsystem = new FlywheelSubsystem();
 
-        // flywheelSubsystem.setDefaultCommand(new SetFlywheelFromPID(flywheelSubsystem, Math.random() * 600 + 601));
-        flywheelSubsystem.setDefaultCommand(new SetFlywheelFromPID(flywheelSubsystem));
-        // flywheelSubsystem.setDefaultCommand(new SetFlywheelFromVoltage(flywheelSubsystem));
+//         flywheelSubsystem.setDefaultCommand(new SetFlywheelFromPID(flywheelSubsystem, Math.random() * 600 + 601));
+//        flywheelSubsystem.setDefaultCommand(new SetFlywheelFromPID(flywheelSubsystem));
+         flywheelSubsystem.setDefaultCommand(new SetFlywheelFromVoltage(flywheelSubsystem));
     }
 
     /**
